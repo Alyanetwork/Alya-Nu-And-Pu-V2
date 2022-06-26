@@ -1,0 +1,16 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © mermary0134
+
+//@version=3
+study("Alyanet Meter", overlay=false)
+a=high - low
+b=100*(close<open ? a/high : close>open ? a/low : na)
+plot_rengi= close>open ? green : close<open ? red : green
+
+a1=max((high-low), abs(high-close[1]))
+a2=max(a1, abs(low-close[1]))
+a2yuzde=100*(close<open ? a/high : close>open ? a/low : na)
+n1=input(14)
+atr=rma(a2yuzde, n1)
+plot(b, color=plot_rengi, linewidth=3)
+plot(atr, color=blue, linewidth=3)
